@@ -76,9 +76,7 @@ function draw() {
   else if(obs8.x<0) {
     obs8.x=600;
   }
-  snakeGroup()
-  
-  generateSnakes()
+  snakeGroup();
 
   if(keyDown("up"))
   {
@@ -112,23 +110,19 @@ function draw() {
     obs8.velocityX=0
     text("You Lose",250,300)
   }
+  
   drawSprites();
 }
-function snakeGroup(){
-  if(frameCount % 50 ===0){
-  var snake = createSprite(random(70,500),random(500,120),100,5);
-  snake.shapeColor="yellow";}
+function snakeGroup(){}
 
-}
 function generateSnakes()
 {
-  for(var i=0;i<(snakeGroup).length;i++)
-  {
-    var temp = (snakeGroup).get(i)
-    if(rabbit.isTouching(temp))
-    {
-      rabbit.x=50;
-      rabbit.y=550;
-    }
+  if(framecount %  50 === 0){
+    var snake = createSprite(random(70,500),random(500,120),100,5);
+    snake.shapeColor="yellow";
+    snakeGroup.add(snake);
+  }
+  if(rabbit.isTouching(snakeGroup)){
+    rabbit=(50,550);
   }
 }
