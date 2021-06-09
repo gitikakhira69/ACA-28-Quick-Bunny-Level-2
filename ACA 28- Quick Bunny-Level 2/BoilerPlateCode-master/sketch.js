@@ -5,7 +5,7 @@ function preload() {
 var rabbit;
 var carrot;
 var edges;
-var snake;
+var snake,snakeGroup;
 
 function setup() {
   createCanvas(600,600);
@@ -42,6 +42,8 @@ function setup() {
   obs8=createSprite(50,350,100,20)
   obs8.velocityX=-5;
   obs8.shapeColor="blue";
+
+  snakeGroup = new Group();
 }
 
 function draw() {
@@ -76,7 +78,15 @@ function draw() {
   else if(obs8.x<0) {
     obs8.x=600;
   }
-  snakeGroup();
+  
+  generateSnakes();
+  for(var i;i<(snakeGroup).length;i++){
+    var temp = (snakeGroup).get(i);
+    if(rabbit.isTouching(temp)){
+      rabbit.x=50;
+      rabbiy.y=550;
+    }
+  }
 
   if(keyDown("up"))
   {
@@ -110,19 +120,14 @@ function draw() {
     obs8.velocityX=0
     text("You Lose",250,300)
   }
-  
   drawSprites();
 }
-function snakeGroup(){}
 
-function generateSnakes()
-{
-  if(framecount %  50 === 0){
+
+function generateSnakes(){
+  if(frameCount %  50 === 0){
     var snake = createSprite(random(70,500),random(500,120),100,5);
     snake.shapeColor="yellow";
     snakeGroup.add(snake);
-  }
-  if(rabbit.isTouching(snakeGroup)){
-    rabbit=(50,550);
   }
 }
