@@ -80,11 +80,11 @@ function draw() {
   }
   
   generateSnakes();
-  for(var i;i<(snakeGroup).length;i++){
+  for(var i=0;i<(snakeGroup).length;i++){
     var temp = (snakeGroup).get(i);
     if(rabbit.isTouching(temp)){
       rabbit.x=50;
-      rabbiy.y=550;
+      rabbit.y=550;
     }
   }
 
